@@ -1,0 +1,62 @@
+<h1>Cadastrar paciente</h1>
+
+<div class="well">
+	<form #formAtendimento="ngForm">
+		<div class="form-group">
+			<label for="nome">Paciente:</label>
+			<input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="atendimento.nome" #nome="ngModel"
+				minlength="3" required>
+			<div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+				<div [hidden]="!nome.errors.required">
+					Digite o nome do paciente.
+				</div>
+				<div [hidden]="!nome.errors.minlength">
+					O nome deve conter ao menos 3 caracteres.
+				</div>
+			</div>
+
+			<label for="cpf">CPF:</label>
+			<input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="atendimento.cpf" #cpf="ngModel"
+				minlength="3" required>
+			<div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
+				<div [hidden]="!cpf.errors.required">
+					Digite o CPF do paciente.
+				</div>
+				<div [hidden]="!nome.errors.minlength">
+					O CPF deve conter ao menos 11 caracteres.
+				</div>
+			</div>
+
+			<label for="endereco">Endereço:</label>
+			<input type="text" class="form-control" id="endereco" name="endereco" [(ngModel)]="atendimento.endereco" #endereco="ngModel"
+				minlength="3" required>
+			<div *ngIf="endereco.errors && (endereco.dirty || endereco.touched)" class="alert alert-danger">
+				<div [hidden]="!endereco.errors.required">
+					Digite o endereço do paciente.
+				</div>
+				<div [hidden]="!nome.errors.minlength">
+					O endereço deve conter ao menos 10 caracteres.
+				</div>
+			</div>
+
+			<label for="prioridade">Prioridade:</label>
+			<input type="number" class="form-control" id="prioridade" name="prioridade"
+				[(ngModel)]="atendimento.prioridade" #prioridade="ngModel" max="5" min="1" required>
+			<div *ngIf="prioridade.errors && (prioridade.dirty || prioridade.touched)" class="alert alert-danger">
+				<div [hidden]="!prioridade.errors.required">
+					Digite a prioridade do paciente.
+				</div>
+				<div [hidden]="!prioridade.errors.minlength">
+					Prioridade de 1 a 5
+				</div>
+			</div>
+		</div>
+		<div class="form-group text-center">
+			<input type="submit" class="btn btn-success" (click)="cadastrar()" value="Cadastrar"
+				[disabled]="!formAtendimento.form.valid">
+			<a class="btn btn-default" [routerLink]="['/atendimentos']">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar
+			</a>
+		</div>
+	</form>
+</div>
